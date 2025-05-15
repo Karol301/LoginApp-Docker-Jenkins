@@ -10,6 +10,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
     volumes:
       - mongo-database-volumes:/data/db
+    networks:
+      - app-network
 
   mongo-express:
     image: mongo-express:1.0
@@ -25,7 +27,13 @@ services:
       - mongo-express-data-volumes:/root/.config
     depends_on:
       - mongo
+    networks:
+      - app-network
 
 volumes:
   mongo-database-volumes: {}
   mongo-express-data-volumes: {}
+
+networks:
+  app-network:
+    external: true
