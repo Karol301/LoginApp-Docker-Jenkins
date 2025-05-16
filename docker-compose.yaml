@@ -29,6 +29,20 @@ services:
       - mongo
     networks:
       - app-network
+  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    depends_on:
+      - mongo
+    environment:
+      MONGO_USER: ${MONGO_USER}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_PORT: ${MONGO_PORT}
+    networks:
+      - app-network
 
 volumes:
   mongo-database-volumes: {}
