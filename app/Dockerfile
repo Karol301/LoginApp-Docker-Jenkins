@@ -15,8 +15,8 @@ WORKDIR /app
 
 COPY --from=build /app/deps /app/deps
 
-COPY app.py .
-COPY user_interface.py .
-COPY database_manager.py .
+COPY app/app.py .
+COPY app/user_interface.py .
+COPY app/database_manager.py .
 
 CMD ["python", "app.py"] 

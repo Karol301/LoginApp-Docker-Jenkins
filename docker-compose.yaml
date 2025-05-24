@@ -33,14 +33,28 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: app/Dockerfile
     container_name: app
+    stdin_open: true  
+    tty: true 
     depends_on:
       - mongo
     environment:
       MONGO_USER: ${MONGO_USER}
       MONGO_PASSWORD: ${MONGO_PASSWORD}
       MONGO_PORT: ${MONGO_PORT}
+    networks:
+      - app-network
+  
+  test:
+    build:
+      context: .
+      dockerfile: tests/Dockerfile.tests
+    container_name: app-tests
+    stdin_open: true  
+    tty: true
+    depends_on:
+      - app
     networks:
       - app-network
 
