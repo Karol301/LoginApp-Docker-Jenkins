@@ -23,4 +23,6 @@ Każdy kontener jest umieszczony w tej samej sieci dockerowej aby mogły się mi
 ![image](https://github.com/user-attachments/assets/1400be9a-bba8-4080-86b7-2e7f760bb7e1)
 
 
+Do lokalnego przetesowania działania kontenerów wykorzystuję komendę:
 docker-compose up -d mongo mongo-express && docker-compose run --rm --service-ports -it test && docker-compose run --service-ports -it app
+Uruchamia się mongodb i mongo-express w tle a także testy i aplikacja. Aplikacja i testy uruchamiaja się w trybie interaktywnym, dodatkowo po zakończeniu testów konetener z nimi zostaje usunięty.
