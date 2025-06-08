@@ -4,9 +4,9 @@ pipeline {
     environment {
         MONGO_USER_CRED = credentials('mongo-user')
         MONGO_PASSWORD_CRED = credentials('mongo-password')
-
-        MONGO_USER = "${MONGO_USER_CRED_USR}"
-        MONGO_PASSWORD = "${MONGO_PASSWORD_CRED_PSW}"
+        
+        MONGO_USER = "${MONGO_USER_CRED}"
+        MONGO_PASSWORD = "${MONGO_PASSWORD_CRED}"
         MONGO_PORT = "27017"               
         MONGO_EXPRESS_PORT = "8081"        
     }
@@ -41,16 +41,23 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') { 
+        stage('Push') { 
             steps {
-                echo 'Stage Deploy'
+                echo 'Stage Push'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh '''
+                            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                            docker tag loggingapp:latest karol301/loggingapp:latest
+                            docker push karol301/loggingapp:latest
+                        '''
+                }
             }
             post {
                 success {
-                    echo 'Deploy was successful'
+                    echo 'Push was successful'
                 }
                 failure {
-                    echo 'Deploy failed'
+                    echo 'Push failed'
                 }
             }
         }

@@ -35,6 +35,7 @@ services:
       context: .
       dockerfile: app/Dockerfile
     container_name: app
+    image: loggingapp:latest
     stdin_open: true  
     tty: true 
     depends_on:
