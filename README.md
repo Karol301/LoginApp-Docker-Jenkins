@@ -22,6 +22,9 @@ Każdy kontener jest umieszczony w tej samej sieci dockerowej aby mogły się mi
 
 ![image](https://github.com/user-attachments/assets/1400be9a-bba8-4080-86b7-2e7f760bb7e1)
 
+Jenkinsfile
+
+![image](https://github.com/user-attachments/assets/c41d78dc-8303-46c4-b5d2-8d4ed79eba32)
 
 Do lokalnego przetesowania działania kontenerów wykorzystuję komendę:
 docker-compose up -d mongo mongo-express && docker-compose run --rm --service-ports -it test && docker-compose run --service-ports -it app
