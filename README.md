@@ -1,4 +1,4 @@
-# LoggingApp-Docker-Jenkins-K8s
+# LoginApp-Docker-Jenkins
 Aplikacja która odpowiada za logowanie lub tworzenia konta dla użytkownika, wykorzystane technologie to MongoDB, MongoExpress, Docker, Jenkins, Kubernetes
 
 Stworzone zostały 2 Dockerfile, jeden tworzył obraz aplikacji a drugi testów:
